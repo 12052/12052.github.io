@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>目标追踪 | 一只海鲜的海底世界</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概述该过程用于识别到目标车装甲板后对装甲板利用OPENCV 3.4的Tracker进行跟踪。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="目标追踪">
+<meta property="og:url" content="http://12052.life/2020/01/07/RM-%E7%9B%AE%E6%A0%87%E8%BF%BD%E8%B8%AA/index.html">
+<meta property="og:site_name" content="一只海鲜的海底世界">
+<meta property="og:description" content="概述该过程用于识别到目标车装甲板后对装甲板利用OPENCV 3.4的Tracker进行跟踪。">
+<meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-01-07T06:14:19.000Z">
+<meta property="article:modified_time" content="2020-01-08T10:31:04.000Z">
+<meta property="article:author" content="孙霖">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="一只海鲜的海底世界" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只海鲜的海底世界</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://12052.life"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-RM-目标追踪" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/07/RM-%E7%9B%AE%E6%A0%87%E8%BF%BD%E8%B8%AA/" class="article-date">
+  <time datetime="2020-01-07T06:14:19.000Z" itemprop="datePublished">2020-01-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      目标追踪
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>该过程用于识别到目标车装甲板后对装甲板利用OPENCV 3.4的Tracker进行跟踪。</p>
+<a id="more"></a>
+<h1 id="官方源码"><a href="#官方源码" class="headerlink" title="官方源码"></a>官方源码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/core/utility.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/tracking.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/videoio.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( <span class="keyword">int</span> argc, <span class="keyword">char</span>** argv )</span></span>&#123;</span><br><span class="line">  <span class="comment">// show help</span></span><br><span class="line">  <span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;</span><br><span class="line">      <span class="string">" Usage: tracker &lt;video_name&gt;\n"</span></span><br><span class="line">      <span class="string">" examples:\n"</span></span><br><span class="line">      <span class="string">" example_tracking_kcf Bolt/img/%04d.jpg\n"</span></span><br><span class="line">      <span class="string">" example_tracking_kcf faceocc2.webm\n"</span></span><br><span class="line">      &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// declares all required variables</span></span><br><span class="line">  Rect2d roi;</span><br><span class="line">  Mat frame;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// create a tracker object</span></span><br><span class="line">  Ptr&lt;Tracker&gt; tracker = TrackerKCF::create();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set input video</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> video = argv[<span class="number">1</span>];</span><br><span class="line">  <span class="function">VideoCapture <span class="title">cap</span><span class="params">(video)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// get bounding box</span></span><br><span class="line">  cap &gt;&gt; frame;</span><br><span class="line">  roi=selectROI(<span class="string">"tracker"</span>,frame);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//quit if ROI was not selected</span></span><br><span class="line">  <span class="keyword">if</span>(roi.<span class="built_in">width</span>==<span class="number">0</span> || roi.<span class="built_in">height</span>==<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// initialize the tracker</span></span><br><span class="line">  tracker-&gt;init(frame,roi);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// perform the tracking process</span></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Start the tracking process, press ESC to quit.\n"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> ( ;; )&#123;</span><br><span class="line">    <span class="comment">// get frame from the video</span></span><br><span class="line">    cap &gt;&gt; frame;</span><br><span class="line">    <span class="comment">// stop the program if no more images</span></span><br><span class="line">    <span class="keyword">if</span>(frame.rows==<span class="number">0</span> || frame.cols==<span class="number">0</span>)</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">// update the tracking result</span></span><br><span class="line">    tracker-&gt;update(frame,roi);</span><br><span class="line">    <span class="comment">// draw the tracked object</span></span><br><span class="line">    rectangle( frame, roi, Scalar( <span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span> ), <span class="number">2</span>, <span class="number">1</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// show image with the tracked object</span></span><br><span class="line">    imshow(<span class="string">"tracker"</span>,frame);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//quit on ESC button</span></span><br><span class="line">    <span class="keyword">if</span>(waitKey(<span class="number">1</span>)==<span class="number">27</span>)<span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="源码解读"><a href="#源码解读" class="headerlink" title="源码解读"></a>源码解读</h1><h2 id="1、设定输入源"><a href="#1、设定输入源" class="headerlink" title="1、设定输入源"></a>1、设定输入源</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;</span><br><span class="line">    <span class="string">" Usage: tracker &lt;video_name&gt;\n"</span></span><br><span class="line">    <span class="string">" examples:\n"</span></span><br><span class="line">    <span class="string">" example_tracking_kcf Bolt/img/%04d.jpg\n"</span></span><br><span class="line">    <span class="string">" example_tracking_kcf faceocc2.webm\n"</span></span><br><span class="line">    &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在此例程中你可以选择视频源或是一系列图片，注意文件名的标定。</p>
+<h2 id="2、声明变量"><a href="#2、声明变量" class="headerlink" title="2、声明变量"></a>2、声明变量</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Rect2d roi;</span><br><span class="line">Mat frame;</span><br></pre></td></tr></table></figure>
+<p>设定ROI区域记录被追踪对象的边框，变量中的值会被更新</p>
+<h2 id="3、建立追踪类"><a href="#3、建立追踪类" class="headerlink" title="3、建立追踪类"></a>3、建立追踪类</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ptr&lt;Tracker&gt; tracker = TrackerKCF::create();</span><br></pre></td></tr></table></figure>
+<p>有7中追踪算法可以使用：</p>
+<ul>
+<li>MIL</li>
+<li>BOOSTING</li>
+<li>TLD</li>
+<li>KCF</li>
+<li>GOTURN</li>
+<li>MOUSE<br>查找<a href="https://docs.opencv.org/3.4.7/d0/d0a/classcv_1_1Tracker.html" target="_blank" rel="noopener">cv::Tracker</a><h2 id="4、选择追踪对象"><a href="#4、选择追踪对象" class="headerlink" title="4、选择追踪对象"></a>4、选择追踪对象</h2><code>roi=selectROI(&quot;tracker&quot;,frame);</code><br>通过这个函数你可以使用GUI选择被追踪对象的边框，参数是默认的，所以选择会从这个矩形开始并且中间会显示一个红色的十字</li>
+</ul>
+<h2 id="5、初始化追踪对象"><a href="#5、初始化追踪对象" class="headerlink" title="5、初始化追踪对象"></a>5、初始化追踪对象</h2><p><code>tracker-&gt;init(frame,roi);</code><br>载入图像后任何算法都需要初始化，也需要显示被追踪对象的边框，确保边框可用。</p>
+<h2 id="6、更新迭代"><a href="#6、更新迭代" class="headerlink" title="6、更新迭代"></a>6、更新迭代</h2><p><code>tracker-&gt;update(frame,roi);</code></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>1、<a href="https://docs.opencv.org/3.1.0/d2/d0a/tutorial_introduction_to_tracker.html" target="_blank" rel="noopener">OPENCV官方教程</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://12052.life/2020/01/07/RM-%E7%9B%AE%E6%A0%87%E8%BF%BD%E8%B8%AA/" data-id="ck69619v1000abbzv6on65fka" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/08/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          RM-01视觉综述
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/28/RM-%E6%B5%B7%E9%B2%9C%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">海鲜的第一个博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89%E7%BB%84/">RoboMaster视觉组</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%BC%E5%90%88/">综合</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/01/08/RM%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/">RM相机驱动</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/08/%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/">装甲板识别</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/08/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">RM-02环境配置</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/08/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/RM-%E7%9B%AE%E6%A0%87%E8%BF%BD%E8%B8%AA/">目标追踪</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 孙霖<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
