@@ -7,15 +7,15 @@
   
   <title>RM-02环境配置 | 一只海鲜的海底世界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="主机环境 Ubunutu 18.04 LTS 因为秒算运行环境为Ubuntu 16.04 LTS 以及我认为Linux可以对文件的结构和运行方式有直接的认识，有助于把控代码的运行。">
+  <meta name="description" content="Ubuntu配置OPENCV环境主机系统 Ubunutu 18.04 LTS因为秒算运行环境为Ubuntu 16.04 LTS 以及我认为Linux可以对文件的结构和运行方式有直接的认识，有助于把控代码的运行。 Ubuntu的软件架构搭建   CMAKE工具、编程工具、C++11、Make等基础工具 OPENCV3.4.7 海康威视工业相机   基础工具 Ubuntu终端中输入： sudo apt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RM-02环境配置">
 <meta property="og:url" content="http://12052.life/2020/01/08/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="一只海鲜的海底世界">
-<meta property="og:description" content="主机环境 Ubunutu 18.04 LTS 因为秒算运行环境为Ubuntu 16.04 LTS 以及我认为Linux可以对文件的结构和运行方式有直接的认识，有助于把控代码的运行。">
+<meta property="og:description" content="Ubuntu配置OPENCV环境主机系统 Ubunutu 18.04 LTS因为秒算运行环境为Ubuntu 16.04 LTS 以及我认为Linux可以对文件的结构和运行方式有直接的认识，有助于把控代码的运行。 Ubuntu的软件架构搭建   CMAKE工具、编程工具、C++11、Make等基础工具 OPENCV3.4.7 海康威视工业相机   基础工具 Ubuntu终端中输入： sudo apt">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-01-08T02:19:39.000Z">
-<meta property="article:modified_time" content="2020-02-05T10:25:08.645Z">
+<meta property="article:modified_time" content="2020-02-05T11:19:20.292Z">
 <meta property="article:author" content="孙霖">
 <meta name="twitter:card" content="summary">
   
@@ -92,14 +92,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="主机环境"><a href="#主机环境" class="headerlink" title="主机环境"></a>主机环境</h1><ol>
-<li>Ubunutu 18.04 LTS<br> 因为秒算运行环境为Ubuntu 16.04 LTS 以及我认为Linux可以对文件的结构和运行方式有直接的认识，有助于把控代码的运行。<h1 id=""><a href="#" class="headerlink" title=""></a></h1></li>
+        <h1 id="Ubuntu配置OPENCV环境"><a href="#Ubuntu配置OPENCV环境" class="headerlink" title="Ubuntu配置OPENCV环境"></a>Ubuntu配置OPENCV环境</h1><h1 id="主机系统"><a href="#主机系统" class="headerlink" title="主机系统"></a>主机系统</h1><ol>
+<li>Ubunutu 18.04 LTS<br>因为秒算运行环境为Ubuntu 16.04 LTS 以及我认为Linux可以对文件的结构和运行方式有直接的认识，有助于把控代码的运行。</li>
+<li>Ubuntu的软件架构搭建</li>
 </ol>
+<ul>
+<li>CMAKE工具、编程工具、C++11、Make等基础工具</li>
+<li>OPENCV3.4.7</li>
+<li>海康威视工业相机</li>
+</ul>
+<hr>
+<h2 id="基础工具"><a href="#基础工具" class="headerlink" title="基础工具"></a>基础工具</h2><ol>
+<li>Ubuntu终端中输入：<br> sudo apt-get update<br> sudo apt-get upgrade<br> sudo apt-get install vim build-essential make libeigen3-dev cmake</li>
+</ol>
+<hr>
+<h2 id="OPENCV安装"><a href="#OPENCV安装" class="headerlink" title="OPENCV安装"></a>OPENCV安装</h2><h3 id="1、所需基础软件下载"><a href="#1、所需基础软件下载" class="headerlink" title="1、所需基础软件下载"></a>1、所需基础软件下载</h3><pre><code>sudo apt-get install libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev</code></pre><h3 id="2、下载源码"><a href="#2、下载源码" class="headerlink" title="2、下载源码"></a>2、下载源码</h3><p>opencv的源码位于<a href="https://opencv.org/releases/" target="_blank" rel="noopener">网站</a>，根据自身所需版本安装。下载OPENCV包和contrib包。<br>同时，大疆Manifold2中（2019年）运行的是OPENCV3.1，详情见其余博文。</p>
+<h3 id="3、解压"><a href="#3、解压" class="headerlink" title="3、解压"></a>3、解压</h3><p>将下载的文件移动到安装目录中<br>    mv opencv* &lt;安装目录&gt;<br>解压<br>    unzip opencv-3.4.7.zip(opencv的下载路径)<br>    mv opencv_contrib* opencv-3.4.7<br>    cd opencv-3.4.7</p>
+<h3 id="4、编译"><a href="#4、编译" class="headerlink" title="4、编译"></a>4、编译</h3><p><strong>新建编译用文件夹</strong><br>    mkdir release<br>    cd release<br><strong>CMake</strong><br>代码中书名号的位置替换成contrib的路径<br>    cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_GENERATE_PKGCONFIG=ON -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules ..<br>此处时间约为几分钟。<br><strong>make</strong><br>    make -j7<br>注：此处的7为我的处理器的核的数量。<br><em>此处可能会出现错误：</em><br>-Eigen调用出错<br>当调用 eigen 库时，会报错：fatal error: Eigen/Core: No such file or directory，这是因为 eigen 库默认安装在了 /usr/include/eigen3/Eigen 路径下，需使用下面命令映射到 /usr/include 路径下<br>解决：<br>    sudo ln -s /usr/include/eigen3/Eigen /usr/include/Eige<br>-找不到各种文件<br>因为需要从外国的服务器下载东西，所以在CMake时有些文件会下载失败，这时有三种方法：</p>
+<ol>
+<li>翻墙</li>
+<li>在CMakeDownloadList.txt文件中有下载失败的文件名和链接，复制链接新建文件，自己动手丰衣足食。</li>
+<li>使用别人的release文件夹，只要都是台式机应该都一样。。。。吧。</li>
+</ol>
+<p><em>make过程可能需要30min以上，所以请自行安排时间</em><br><strong>install</strong><br>    sudo make install</p>
+<h3 id="5、配置环境变量"><a href="#5、配置环境变量" class="headerlink" title="5、配置环境变量"></a>5、配置环境变量</h3><p><strong>库调用</strong><br>在opencv.conf中写入opencv库的路径&lt;/usr/local/lib&gt;。<br>    sudo gedit /etc/ld.so.conf.d/opencv.conf<br>    sudo ldconfig<br><em>此处可能出现错误</em><br>    sbin/ldconfig.real: /usr/lib/nvidia-375/libEGL.so.1 不是符号连接<br>    /sbin/ldconfig.real: /usr/lib32/nvidia-375/libEGL.so.1 不是符号连接<br>解决：<br> 只需要分别输入上面图下部分的四行命令就可解决<br>    sudo mv /usr/lib/nvidia-375/libEGL.so.1 /usr/lib/nvidia-375/libEGL.so.1.org<br>    sudo mv /usr/lib32/nvidia-375/libEGL.so.1 /usr/lib32/nvidia-375/libEGL.so.1.org<br>    sudo ln -s /usr/lib/nvidia-375/libEGL.so.375.39 /usr/lib/nvidia-375/libEGL.so.1<br>    sudo ln -s /usr/lib32/nvidia-375/libEGL.so.375.39 /usr/lib32/nvidia-375/libEGL.so.1<br><strong>环境变量</strong><br>将<code>export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig</code>写入.bashrc文件最后。<br>    sudo gedit ～/.bashrc<br>    source ~/.bashrc<br>    sudo updatedb</p>
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>至此开发机环境已配置齐，如有疑问或交流意向欢迎交流联系<code>13051613182@163.com</code>~</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://12052.life/2020/01/08/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="ck696bdmv0002opzv95ntbnor" class="article-share-link">Share</a>
+      <a data-url="http://12052.life/2020/01/08/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="ck6980ww70000mfzv0vy2146k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -118,7 +140,7 @@
     </a>
   
   
-    <a href="/2020/01/08/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">RM-01视觉综述</div>
     </a>
@@ -136,7 +158,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89%E7%BB%84/">RoboMaster视觉组</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%BC%E5%90%88/">综合</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%BC%E5%90%88/">综合</a></li></ul>
     </div>
   </div>
 
@@ -176,7 +198,7 @@
           </li>
         
           <li>
-            <a href="/2020/01/08/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
+            <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
           </li>
         
           <li>
