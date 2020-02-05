@@ -15,7 +15,7 @@
 <meta property="og:description" content="Ubuntu配置OPENCV环境 主机系统 Ubunutu 18.04 LTS因为秒算运行环境为Ubuntu 16.04 LTS 以及我认为Linux可以对文件的结构和运行方式有直接的认识，有助于把控代码的运行。 Ubuntu的软件架构搭建   CMAKE工具、编程工具、C++11、Make等基础工具 OPENCV3.4.7 海康威视工业相机   基础工具Ubuntu终端中输入：    sudo">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-01-08T02:19:39.000Z">
-<meta property="article:modified_time" content="2020-02-05T11:33:25.758Z">
+<meta property="article:modified_time" content="2020-02-05T11:34:29.257Z">
 <meta property="article:author" content="孙霖">
 <meta name="twitter:card" content="summary">
   
@@ -105,8 +105,7 @@
 <hr>
 <h3 id="基础工具"><a href="#基础工具" class="headerlink" title="基础工具"></a>基础工具</h3><p>Ubuntu终端中输入：<br>    sudo apt-get update<br>    sudo apt-get upgrade<br>    sudo apt-get install vim build-essential make libeigen3-dev cmake</p>
 <hr>
-<h3 id="OPENCV安装"><a href="#OPENCV安装" class="headerlink" title="OPENCV安装"></a>OPENCV安装</h3><h4 id="1、所需基础软件下载"><a href="#1、所需基础软件下载" class="headerlink" title="1、所需基础软件下载"></a>1、所需基础软件下载</h4><p>sudo apt-get install libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev</p>
-<h4 id="2、下载源码"><a href="#2、下载源码" class="headerlink" title="2、下载源码"></a>2、下载源码</h4><p>opencv的源码位于<a href="https://opencv.org/releases/" target="_blank" rel="noopener">网站</a>，根据自身所需版本安装。下载OPENCV包和contrib包。<br>同时，大疆Manifold2中（2019年）运行的是OPENCV3.1，详情见其余博文。</p>
+<h3 id="OPENCV安装"><a href="#OPENCV安装" class="headerlink" title="OPENCV安装"></a>OPENCV安装</h3><h4 id="1、所需基础软件下载"><a href="#1、所需基础软件下载" class="headerlink" title="1、所需基础软件下载"></a>1、所需基础软件下载</h4><pre><code>sudo apt-get install libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg-dev libswscale-dev libtiff5-dev</code></pre><h4 id="2、下载源码"><a href="#2、下载源码" class="headerlink" title="2、下载源码"></a>2、下载源码</h4><p>opencv的源码位于<a href="https://opencv.org/releases/" target="_blank" rel="noopener">网站</a>，根据自身所需版本安装。下载OPENCV包和contrib包。<br>同时，大疆Manifold2中（2019年）运行的是OPENCV3.1，详情见其余博文。</p>
 <h4 id="3、解压"><a href="#3、解压" class="headerlink" title="3、解压"></a>3、解压</h4><p>将下载的文件移动到安装目录中<br>    mv opencv* &lt;安装目录&gt;<br>解压<br>    unzip opencv-3.4.7.zip(opencv的下载路径)<br>    mv opencv_contrib* opencv-3.4.7<br>    cd opencv-3.4.7</p>
 <h4 id="4、编译"><a href="#4、编译" class="headerlink" title="4、编译"></a>4、编译</h4><p><strong>新建编译用文件夹</strong><br>    mkdir release<br>    cd release<br><strong>CMake</strong><br>代码中书名号的位置替换成contrib的路径<br>    cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_GENERATE_PKGCONFIG=ON -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules ..<br>此处时间约为几分钟。<br><strong>make</strong><br>    make -j7<br>注：此处的7为我的处理器的核的数量。<br><em>此处可能会出现错误：</em><br>-Eigen调用出错<br>当调用 eigen 库时，会报错：fatal error: Eigen/Core: No such file or directory，这是因为 eigen 库默认安装在了 /usr/include/eigen3/Eigen 路径下，需使用下面命令映射到 /usr/include 路径下<br>解决：<br>    sudo ln -s /usr/include/eigen3/Eigen /usr/include/Eige<br>-找不到各种文件<br>因为需要从外国的服务器下载东西，所以在CMake时有些文件会下载失败，这时有三种方法：</p>
 <ol>
@@ -121,7 +120,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="ck698h688000905zvcyxd6l49" class="article-share-link">Share</a>
+      <a data-url="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="ck698ik3d00071kzv4wz5c9e2" class="article-share-link">Share</a>
       
       
     </footer>
