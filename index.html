@@ -1,387 +1,294 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
   
+  <title>一只海鲜的海底世界</title>
+  <meta name="author" content="孙霖">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <title>一只海鲜的海底世界</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="一只海鲜的海底世界">
-<meta property="og:url" content="http://12052.life/index.html">
-<meta property="og:site_name" content="一只海鲜的海底世界">
-<meta property="og:locale" content="ch">
-<meta property="article:author" content="孙霖">
-<meta name="twitter:card" content="summary">
+  <meta property="og:site_name" content="一只海鲜的海底世界"/>
+
   
-    <link rel="alternate" href="/atom.xml" title="一只海鲜的海底世界" type="application/atom+xml">
+    <meta property="og:image" content=""/>
   
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="一只海鲜的海底世界" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 4.2.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">一只海鲜的海底世界</a>
-      </h1>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">一只海鲜的海底世界</a></h1>
+  <h2><a href="/"></a></h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/about">About</a></li>
+      
+      <li><a href="/archives">Archives</a></li>
+      
+      <li><a href="/atom.xml">RSS</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2020/02/18/RoboMaster视觉/RM-08雷达/">RM-08雷达</a></h1>
+  
+
+      
+        <time datetime="2020-02-18T06:39:18.000Z">2020-02-18</time>
+      
+    </header>
+    <div class="entry">
+      
+        <h1 id="雷达设计"><a href="#雷达设计" class="headerlink" title="雷达设计"></a>雷达设计</h1><h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>今年新加入雷达机器人，我认为作用定为是对整体环境的把握，雷达接入操作间的显示屏。主要难点为：<br>1、传感器的选择；<br>2、处理速度及处理方法；<br>3、如何不通过灯条而通过整体三维建模识别到我方和敌方机器人。<br>4、机器人或者导弹姿态判断</p>
+<h2 id="技术解析"><a href="#技术解析" class="headerlink" title="技术解析"></a>技术解析</h2><h3 id="拼接点云"><a href="#拼接点云" class="headerlink" title="拼接点云"></a>拼接点云</h3><p>根据RGB-D图像和相机内参，我们可以计算出任何一个像素在相机坐标系下的位置，如果把所有像素空间坐标都求出来，即可构建地图。<br>安装PCL（Point Cloud Library）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install libpcl-all</span><br></pre></td></tr></table></figure>
+<p>安装完成后，PCL的头文件在/usr/include/pcl-1.7下，库文件位于/usr/lib/下。</p>
+<h2 id="具体设计"><a href="#具体设计" class="headerlink" title="具体设计"></a>具体设计</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>《视觉SLAM十四讲：从理论到实践》</p>
+
       
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+      
         
-          <a class="main-nav-link" href="/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://12052.life"></form>
-      </div>
-    </div>
+      
+      <div class="clearfix"></div>
+      </footer>
   </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-RoboMaster视觉/RM-02环境配置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/02/05/RoboMaster%E8%A7%86%E8%A7%89/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time datetime="2020-02-05T02:19:39.000Z" itemprop="datePublished">2020-02-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a>
-  </div>
+</article>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+
+
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/05/RoboMaster%E8%A7%86%E8%A7%89/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">RM-02环境配置</a>
-    </h1>
+    <h1 class="title"><a href="/2020/02/05/RoboMaster视觉/RM-02环境配置/">RM-02环境配置</a></h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+      
+        <time datetime="2020-02-05T02:19:39.000Z">2020-02-05</time>
+      
+    </header>
+    <div class="entry">
       
         <h1 id="Ubuntu配置OPENCV环境"><a href="#Ubuntu配置OPENCV环境" class="headerlink" title="Ubuntu配置OPENCV环境"></a>Ubuntu配置OPENCV环境</h1>
-        
-          <p class="article-more-link">
-            <a href="/2020/02/05/RoboMaster%E8%A7%86%E8%A7%89/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/#more">Read More</a>
-          </p>
-        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://12052.life/2020/02/05/RoboMaster%E8%A7%86%E8%A7%89/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="ck698zc160005hqzv0uya0il6" class="article-share-link">Share</a>
       
+        
+        <footer>
+          <div class="alignleft">
+            <a href="/2020/02/05/RoboMaster视觉/RM-02环境配置/#more" class="more-link">Read More ›</a>
+          </div>
+        
+        
       
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
-  
-    <article id="post-RoboMaster视觉/RM相机驱动" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/" class="article-date">
-  <time datetime="2020-01-08T02:33:55.000Z" itemprop="datePublished">2020-01-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/">RM相机驱动</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+
+  <article class="post">
+  <div class="post-content">
+    <header>
       
-        
+  
+    <h1 class="title"><a href="/2020/01/08/RoboMaster视觉/RM-03相机驱动/">RM-03相机驱动</a></h1>
+  
+
+      
+        <time datetime="2020-01-08T02:33:55.000Z">2020-01-08</time>
+      
+    </header>
+    <div class="entry">
+      
+        <h1 id="相机驱动"><a href="#相机驱动" class="headerlink" title="相机驱动"></a>相机驱动</h1><h2 id="相机选型"><a href="#相机选型" class="headerlink" title="相机选型"></a>相机选型</h2><p>本设计采用的是海康威视的MV-CA013-20UM型号工业相机，大致参数如网址<a href="https://www.hikrobotics.com/vision/visioninfo.htm?type=43&oid=2433" target="_blank" rel="noopener">海康威视工业相机CA013</a>。</p>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/" data-id="ck698zc1a0008hqzvdp62c83u" class="article-share-link">Share</a>
       
+        
+        <footer>
+          <div class="alignleft">
+            <a href="/2020/01/08/RoboMaster视觉/RM-03相机驱动/#more" class="more-link">Read More ›</a>
+          </div>
+        
+        
       
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
-  
-    <article id="post-RoboMaster视觉/装甲板识别" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" class="article-date">
-  <time datetime="2020-01-08T02:33:17.000Z" itemprop="datePublished">2020-01-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/">装甲板识别</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+
+  <article class="post">
+  <div class="post-content">
+    <header>
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本篇将实现对敌方战车装甲板的识别和标定。</p>
+  
+    <h1 class="title"><a href="/2020/01/08/RoboMaster视觉/RM-05装甲板识别/">RM-05装甲板识别</a></h1>
+  
 
+      
+        <time datetime="2020-01-08T02:33:17.000Z">2020-01-08</time>
+      
+    </header>
+    <div class="entry">
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件<a href="https://github.com/12052/RoboMaster-Vision2020/blob/dev/Codes/ArmorFinder/include/ArmorFinder.h" target="_blank" rel="noopener">ArmorFinder.h</a>及对应源文件。</p>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" data-id="ck698zc1b0009hqzvhpdjhlfd" class="article-share-link">Share</a>
       
+        
+        <footer>
+          <div class="alignleft">
+            <a href="/2020/01/08/RoboMaster视觉/RM-05装甲板识别/#more" class="more-link">Read More ›</a>
+          </div>
+        
+        
       
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
-  
-    <article id="post-RoboMaster视觉/RM-01视觉综述" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" class="article-date">
-  <time datetime="2020-01-08T02:16:53.000Z" itemprop="datePublished">2020-01-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+
+
+  <article class="post">
+  <div class="post-content">
+    <header>
+      
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
-    </h1>
+    <h1 class="title"><a href="/2020/01/08/RoboMaster视觉/RM-01视觉综述/">RM-01视觉综述</a></h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+      
+        <time datetime="2020-01-08T02:16:53.000Z">2020-01-08</time>
+      
+    </header>
+    <div class="entry">
       
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>因为一些原因我准备自己着手实现一套RoboMaster的代码，废话不多说，开始吧。</p>
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" data-id="ck698zc150004hqzvc8995g8n" class="article-share-link">Share</a>
       
+        
+        
       
-    </footer>
+      <div class="clearfix"></div>
+      </footer>
   </div>
-  
 </article>
 
 
-  
-    <article id="post-RoboMaster视觉/RM-目标追踪" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/01/07/RoboMaster%E8%A7%86%E8%A7%89/RM-%E7%9B%AE%E6%A0%87%E8%BF%BD%E8%B8%AA/" class="article-date">
-  <time datetime="2020-01-07T06:14:19.000Z" itemprop="datePublished">2020-01-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/07/RoboMaster%E8%A7%86%E8%A7%89/RM-%E7%9B%AE%E6%A0%87%E8%BF%BD%E8%B8%AA/">目标追踪</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>该过程用于识别到目标车装甲板后对装甲板利用OPENCV 3.4的Tracker进行跟踪。</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/01/07/RoboMaster%E8%A7%86%E8%A7%89/RM-%E7%9B%AE%E6%A0%87%E8%BF%BD%E8%B8%AA/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://12052.life/2020/01/07/RoboMaster%E8%A7%86%E8%A7%89/RM-%E7%9B%AE%E6%A0%87%E8%BF%BD%E8%B8%AA/" data-id="ck698zc180007hqzv1jq7ejie" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
 
+
+<nav id="pagination">
+  
+  
+    <a href="/page/2/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:12052.life">
+  </form>
+</div>
 
   
-
-
-  <nav id="page-nav">
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
+      <li>
+        <a href="/2020/02/18/RoboMaster视觉/RM-08雷达/">RM-08雷达</a>
+      </li>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%BC%E5%90%88/">综合</a></li></ul>
-    </div>
-  </div>
+      <li>
+        <a href="/2020/02/05/RoboMaster视觉/RM-02环境配置/">RM-02环境配置</a>
+      </li>
+    
+      <li>
+        <a href="/2020/01/08/RoboMaster视觉/RM-03相机驱动/">RM-03相机驱动</a>
+      </li>
+    
+      <li>
+        <a href="/2020/01/08/RoboMaster视觉/RM-05装甲板识别/">RM-05装甲板识别</a>
+      </li>
+    
+      <li>
+        <a href="/2020/01/08/RoboMaster视觉/RM-01视觉综述/">RM-01视觉综述</a>
+      </li>
+    
+  </ul>
+</div>
 
 
   
-    
-
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
   
-    
+    <li><a href="/categories/RoboMaster视觉/">RoboMaster视觉</a><small>6</small></li>
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
-    </div>
-  </div>
-
-
+    <li><a href="/categories/综合/">综合</a><small>1</small></li>
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/02/05/RoboMaster%E8%A7%86%E8%A7%89/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">RM-02环境配置</a>
-          </li>
-        
-          <li>
-            <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/">RM相机驱动</a>
-          </li>
-        
-          <li>
-            <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/">装甲板识别</a>
-          </li>
-        
-          <li>
-            <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
-          </li>
-        
-          <li>
-            <a href="/2020/01/07/RoboMaster%E8%A7%86%E8%A7%89/RM-%E7%9B%AE%E6%A0%87%E8%BF%BD%E8%B8%AA/">目标追踪</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+  </ul>
+</div>
+
 
   
 </aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 孙霖<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    <div class="clearfix"></div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+  <footer id="footer" class="inner"><div class="alignleft">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  &copy; 2020 孙霖
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
 
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
 </html>
+

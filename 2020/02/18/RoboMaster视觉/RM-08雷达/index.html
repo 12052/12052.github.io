@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>RM-01视觉综述 › 一只海鲜的海底世界</title>
+  <title>RM-08雷达 › 一只海鲜的海底世界</title>
   <meta name="author" content="孙霖">
   
-  <meta name="description" content="概述因为一些原因我准备自己着手实现一套RoboMaster的代码，废话不多说，开始吧。">
+  <meta name="description" content="雷达设计综述今年新加入雷达机器人，我认为作用定为是对整体环境的把握，雷达接入操作间的显示屏。主要难点为：1、传感器的选择；2、处理速度及处理方法；3、如何不通过灯条而通过整体三维建模识别到我方和敌方机器人。4、机器人或者导弹姿态判断
+技术解析拼接点云根据RGB-D图像和相机内参，我们可以计算出任何一">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="RM-01视觉综述"/>
+  <meta property="og:title" content="RM-08雷达"/>
   <meta property="og:site_name" content="一只海鲜的海底世界"/>
 
   
@@ -52,16 +53,20 @@
     <header>
       
   
-    <h1 class="title">RM-01视觉综述</h1>
+    <h1 class="title">RM-08雷达</h1>
   
 
       
-        <time datetime="2020-01-08T02:16:53.000Z">2020-01-08</time>
+        <time datetime="2020-02-18T06:39:18.000Z">2020-02-18</time>
       
     </header>
     <div class="entry">
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>因为一些原因我准备自己着手实现一套RoboMaster的代码，废话不多说，开始吧。</p>
+        <h1 id="雷达设计"><a href="#雷达设计" class="headerlink" title="雷达设计"></a>雷达设计</h1><h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>今年新加入雷达机器人，我认为作用定为是对整体环境的把握，雷达接入操作间的显示屏。主要难点为：<br>1、传感器的选择；<br>2、处理速度及处理方法；<br>3、如何不通过灯条而通过整体三维建模识别到我方和敌方机器人。<br>4、机器人或者导弹姿态判断</p>
+<h2 id="技术解析"><a href="#技术解析" class="headerlink" title="技术解析"></a>技术解析</h2><h3 id="拼接点云"><a href="#拼接点云" class="headerlink" title="拼接点云"></a>拼接点云</h3><p>根据RGB-D图像和相机内参，我们可以计算出任何一个像素在相机坐标系下的位置，如果把所有像素空间坐标都求出来，即可构建地图。<br>安装PCL（Point Cloud Library）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install libpcl-all</span><br></pre></td></tr></table></figure>
+<p>安装完成后，PCL的头文件在/usr/include/pcl-1.7下，库文件位于/usr/lib/下。</p>
+<h2 id="具体设计"><a href="#具体设计" class="headerlink" title="具体设计"></a>具体设计</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>《视觉SLAM十四讲：从理论到实践》</p>
 
       
     </div>
