@@ -15,7 +15,7 @@
 <meta property="og:description" content="第3讲：三维空间刚体运动综述一个刚体在三维空间中的运动是如何描述，由一次旋转加一次平移组成。《视觉SLAM十四讲：从理论到实践》书中例题解析">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-02-20T09:42:08.000Z">
-<meta property="article:modified_time" content="2020-02-23T09:01:02.092Z">
+<meta property="article:modified_time" content="2020-02-23T09:08:20.968Z">
 <meta property="article:author" content="孙霖">
 <meta name="twitter:card" content="summary">
   
@@ -100,18 +100,21 @@
 <h3 id="欧拉角"><a href="#欧拉角" class="headerlink" title="欧拉角"></a>欧拉角</h3><p>欧拉角提供了一个直观的方式来描述旋转——使用三个分离的转角，把一个旋转分解成3次绕不同轴的旋转，有XYZ、YXZ等旋转方式，如航空中描述的“偏航——俯仰——翻滚”(yaw-pitch-roll)三个角度描述一个旋转。相当于ZYX。</p>
 <p>但是因为欧拉角的奇异性（万向锁问题），我们很少在SLAM程序中直接使用欧拉角表示姿态，同样不会在滤波或者优化中使用欧拉角表示旋转。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//欧拉角：可以将旋转矩阵直接转换成欧拉角</span></span><br><span class="line">Eigen::Vector3d euler_angles = rotation_matrix.eulerAngles(<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line"><span class="comment">//ZYX顺序，即ypr顺序</span></span><br></pre></td></tr></table></figure>
-<h3 id="四元数"><a href="#四元数" class="headerlink" title="四元数"></a>四元数</h3><p>我么找不到<strong>不带奇异性的三位向量描述方式</strong>，三位旋转是一个三维流形，不可能无奇异的表达它，因此我们用四元数来表示旋转：</p>
+<h3 id="四元数"><a href="#四元数" class="headerlink" title="四元数"></a>四元数</h3><p>我们找不到<strong>不带奇异性的三位向量描述方式</strong>，三位旋转是一个三维流形，不可能无奇异的表达它，因此我们用四元数来表示旋转：</p>
 <ul>
 <li>首先，把三维空间点用一个虚四元数来描述p</li>
 <li>用四元数q表示这个旋转q</li>
 <li>则，p’即可表示这样的乘积。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//四元数</span></span><br><span class="line">Eigen::Quaterniond q  = Eigen::Quaterniond(rotation_vector);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"quaternion = \n"</span>&lt;&lt;q.coeffs() &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//coeffs的顺序是（x,y,z,w）,w为实部，前三者为虚部</span></span><br><span class="line"><span class="comment">//也可以把旋转矩阵付给他</span></span><br><span class="line">q = Eigen::Quaterniond(rotation_matrix);</span><br><span class="line"><span class="comment">//使用四元数旋转一个向量，使用重载的乘法即可</span></span><br><span class="line">v_rotated = q*v;</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>旋转矩阵（3x3）：Eigen::Matrix3d;<br>旋转向量（3x1）：Eigen::AngleAxisd;<br>欧拉角（3x1）：Eigen::Vector3d。<br>四元数（4x1）：Eigen::Quaterniond。<br>欧式变换矩阵（4x4）：Eigen::Isometry3d。<br>仿射变换（4x4）：Eigen::Affine3d。<br>射影变换（4x4）：Eigen::Projective3d。</li>
+
+</li>
 </ul>
+<p>我们高中的时候应该都学过复数，一个复数由实部和虚部组成，即x = a + bi，i是虚数单位，如果你还记得的话应该知道i^2 = -1。而四元数其实和我们学到的这种是类似的，不同的是，它的虚部包含了三个虚数单位，i、j、k，即一个四元数可以表示为x = a + bi + cj + dk，我们使用$q=((x,y,z),w) = (v,w)$，其中v是向量，w是实数，$q = ((x,y,z)sin(\theta /2),cos(\theta /2))$，如果我们想要把空间的一个点P绕着单位向量轴u = (x, y, z)表示的旋转轴旋转θ角度，我们首先把点P扩展到四元数空间，即四元数p = (P, 0)。那么，旋转后新的点对应的四元数（当然这个计算而得的四元数的实部为0，虚部系数就是新的坐标）为：<br>$p’ = qpq^(-1)|$，详细内容见<a href="https://blog.csdn.net/candycat1992/article/details/41254799" target="_blank" rel="noopener">传送门</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>旋转矩阵（3x3）：Eigen::Matrix3d;<br>旋转向量（3x1）：Eigen::AngleAxisd;<br>欧拉角（3x1）：Eigen::Vector3d。<br>四元数（4x1）：Eigen::Quaterniond。<br>欧式变换矩阵（4x4）：Eigen::Isometry3d。<br>仿射变换（4x4）：Eigen::Affine3d。<br>射影变换（4x4）：Eigen::Projective3d。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://12052.life/2020/02/20/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM-02%E4%B8%89%E7%BB%B4%E5%88%9A%E4%BD%93%E8%BF%90%E5%8A%A8/" data-id="ck6ysyt7e00091xzvf83r2f44" class="article-share-link">Share</a>
+      <a data-url="http://12052.life/2020/02/20/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM-02%E4%B8%89%E7%BB%B4%E5%88%9A%E4%BD%93%E8%BF%90%E5%8A%A8/" data-id="ck6yudr8d000chczvhi6p9r7l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -230,6 +233,23 @@
 
 
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
