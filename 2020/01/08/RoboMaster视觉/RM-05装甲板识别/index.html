@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta charset="utf-8">
   
 
   
@@ -15,8 +15,9 @@
 <meta property="og:description" content="概述本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件ArmorFinder.h及对应源文件。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-01-08T02:33:17.000Z">
-<meta property="article:modified_time" content="2020-02-18T06:34:01.346Z">
+<meta property="article:modified_time" content="2020-02-24T03:13:08.010Z">
 <meta property="article:author" content="孙霖">
+<meta property="article:tag" content="激情 阳光 乐观">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="一只海鲜的海底世界" type="application/atom+xml">
@@ -30,10 +31,10 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 <body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+  <div id="container">
     <div id="wrap">
       <header id="header">
   <div id="banner"></div>
@@ -51,6 +52,8 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="https://github.com/12052" target="_blank" rel="noopener">Github</a>
         
       </nav>
       <nav id="sub-nav">
@@ -92,13 +95,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件<a href="https://github.com/12052/RoboMaster-Vision2020/blob/dev/Codes/ArmorFinder/include/ArmorFinder.h" target="_blank" rel="noopener">ArmorFinder.h</a>及对应源文件。</p>
-<a id="more"></a>
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件<a href="https://github.com/12052/RoboMaster-Vision2020/blob/dev/Codes/ArmorFinder/include/ArmorFinder.h" target="_blank" rel="noopener">ArmorFinder.h</a>及对应源文件。<br><a id="more"></a></p>
 <h2 id="灯条识别"><a href="#灯条识别" class="headerlink" title="灯条识别"></a>灯条识别</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" data-id="ck6yudr8a0009hczv95ybdqvm" class="article-share-link">Share</a>
+      <a data-url="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" data-id="ck70ehuoi0008lkzv3u2h43z7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -142,9 +144,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E8%A7%89SLAM-%E6%9D%8E%E7%BE%A4-%E6%9D%8E%E4%BB%A3%E6%95%B0/" rel="tag">视觉SLAM 李群 李代数</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E8%A7%86%E8%A7%89SLAM-%E6%9D%8E%E7%BE%A4-%E6%9D%8E%E4%BB%A3%E6%95%B0/" style="font-size: 10px;">视觉SLAM 李群 李代数</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -163,6 +179,10 @@
       <ul>
         
           <li>
+            <a href="/2020/02/24/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM03-%E6%9D%8E%E7%BE%A4%E4%B8%8E%E6%9D%8E%E4%BB%A3%E6%95%B0/">视觉SLAM03-李群与李代数</a>
+          </li>
+        
+          <li>
             <a href="/2020/02/20/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM-02%E4%B8%89%E7%BB%B4%E5%88%9A%E4%BD%93%E8%BF%90%E5%8A%A8/">视觉SLAM-02三维刚体运动</a>
           </li>
         
@@ -176,10 +196,6 @@
         
           <li>
             <a href="/2020/02/05/RoboMaster%E8%A7%86%E8%A7%89/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">RM-02环境配置</a>
-          </li>
-        
-          <li>
-            <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/">RM-03相机驱动</a>
           </li>
         
       </ul>
@@ -206,6 +222,8 @@
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
+    <a href="https://github.com/12052" target="_blank" rel="noopener" class="mobile-nav-link">Github</a>
+  
 </nav>
     
 
@@ -226,6 +244,21 @@
 
 
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <meta charset="utf-8">
   
 
   
@@ -15,8 +15,9 @@
 <meta property="og:description" content="概述该过程用于识别到目标车装甲板后对装甲板利用OPENCV 3.4的Tracker进行跟踪。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-01-07T06:14:19.000Z">
-<meta property="article:modified_time" content="2020-02-18T07:25:56.600Z">
+<meta property="article:modified_time" content="2020-02-24T03:13:08.010Z">
 <meta property="article:author" content="孙霖">
+<meta property="article:tag" content="激情 阳光 乐观">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="一只海鲜的海底世界" type="application/atom+xml">
@@ -30,10 +31,10 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 <body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+  <div id="container">
     <div id="wrap">
       <header id="header">
   <div id="banner"></div>
@@ -51,6 +52,8 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="https://github.com/12052" target="_blank" rel="noopener">Github</a>
         
       </nav>
       <nav id="sub-nav">
@@ -92,8 +95,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>该过程用于识别到目标车装甲板后对装甲板利用OPENCV 3.4的Tracker进行跟踪。</p>
-<a id="more"></a>
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>该过程用于识别到目标车装甲板后对装甲板利用OPENCV 3.4的Tracker进行跟踪。<br><a id="more"></a></p>
 <h1 id="官方源码"><a href="#官方源码" class="headerlink" title="官方源码"></a>官方源码</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/core/utility.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/tracking.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/videoio.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( <span class="keyword">int</span> argc, <span class="keyword">char</span>** argv )</span></span>&#123;</span><br><span class="line">  <span class="comment">// show help</span></span><br><span class="line">  <span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;</span><br><span class="line">      <span class="string">" Usage: tracker &lt;video_name&gt;\n"</span></span><br><span class="line">      <span class="string">" examples:\n"</span></span><br><span class="line">      <span class="string">" example_tracking_kcf Bolt/img/%04d.jpg\n"</span></span><br><span class="line">      <span class="string">" example_tracking_kcf faceocc2.webm\n"</span></span><br><span class="line">      &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// declares all required variables</span></span><br><span class="line">  Rect2d roi;</span><br><span class="line">  Mat frame;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// create a tracker object</span></span><br><span class="line">  Ptr&lt;Tracker&gt; tracker = TrackerKCF::create();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set input video</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> video = argv[<span class="number">1</span>];</span><br><span class="line">  <span class="function">VideoCapture <span class="title">cap</span><span class="params">(video)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// get bounding box</span></span><br><span class="line">  cap &gt;&gt; frame;</span><br><span class="line">  roi=selectROI(<span class="string">"tracker"</span>,frame);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//quit if ROI was not selected</span></span><br><span class="line">  <span class="keyword">if</span>(roi.<span class="built_in">width</span>==<span class="number">0</span> || roi.<span class="built_in">height</span>==<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// initialize the tracker</span></span><br><span class="line">  tracker-&gt;init(frame,roi);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// perform the tracking process</span></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Start the tracking process, press ESC to quit.\n"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> ( ;; )&#123;</span><br><span class="line">    <span class="comment">// get frame from the video</span></span><br><span class="line">    cap &gt;&gt; frame;</span><br><span class="line">    <span class="comment">// stop the program if no more images</span></span><br><span class="line">    <span class="keyword">if</span>(frame.rows==<span class="number">0</span> || frame.cols==<span class="number">0</span>)</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">// update the tracking result</span></span><br><span class="line">    tracker-&gt;update(frame,roi);</span><br><span class="line">    <span class="comment">// draw the tracked object</span></span><br><span class="line">    rectangle( frame, roi, Scalar( <span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span> ), <span class="number">2</span>, <span class="number">1</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// show image with the tracked object</span></span><br><span class="line">    imshow(<span class="string">"tracker"</span>,frame);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//quit on ESC button</span></span><br><span class="line">    <span class="keyword">if</span>(waitKey(<span class="number">1</span>)==<span class="number">27</span>)<span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="源码解读"><a href="#源码解读" class="headerlink" title="源码解读"></a>源码解读</h1><h2 id="1、设定输入源"><a href="#1、设定输入源" class="headerlink" title="1、设定输入源"></a>1、设定输入源</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;</span><br><span class="line">    <span class="string">" Usage: tracker &lt;video_name&gt;\n"</span></span><br><span class="line">    <span class="string">" examples:\n"</span></span><br><span class="line">    <span class="string">" example_tracking_kcf Bolt/img/%04d.jpg\n"</span></span><br><span class="line">    <span class="string">" example_tracking_kcf faceocc2.webm\n"</span></span><br><span class="line">    &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在此例程中你可以选择视频源或是一系列图片，注意文件名的标定。</p>
@@ -116,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://12052.life/2020/01/07/RoboMaster%E8%A7%86%E8%A7%89/RM-04%E8%87%AA%E5%8A%A8%E7%9E%84%E5%87%86/" data-id="ck6yudr870007hczvdgppcfor" class="article-share-link">Share</a>
+      <a data-url="http://12052.life/2020/01/07/RoboMaster%E8%A7%86%E8%A7%89/RM-04%E8%87%AA%E5%8A%A8%E7%9E%84%E5%87%86/" data-id="ck70ehuoh0007lkzv0gf35nvp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -160,9 +162,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E8%A7%89SLAM-%E6%9D%8E%E7%BE%A4-%E6%9D%8E%E4%BB%A3%E6%95%B0/" rel="tag">视觉SLAM 李群 李代数</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E8%A7%86%E8%A7%89SLAM-%E6%9D%8E%E7%BE%A4-%E6%9D%8E%E4%BB%A3%E6%95%B0/" style="font-size: 10px;">视觉SLAM 李群 李代数</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -181,6 +197,10 @@
       <ul>
         
           <li>
+            <a href="/2020/02/24/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM03-%E6%9D%8E%E7%BE%A4%E4%B8%8E%E6%9D%8E%E4%BB%A3%E6%95%B0/">视觉SLAM03-李群与李代数</a>
+          </li>
+        
+          <li>
             <a href="/2020/02/20/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM-02%E4%B8%89%E7%BB%B4%E5%88%9A%E4%BD%93%E8%BF%90%E5%8A%A8/">视觉SLAM-02三维刚体运动</a>
           </li>
         
@@ -194,10 +214,6 @@
         
           <li>
             <a href="/2020/02/05/RoboMaster%E8%A7%86%E8%A7%89/RM-02%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">RM-02环境配置</a>
-          </li>
-        
-          <li>
-            <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/">RM-03相机驱动</a>
           </li>
         
       </ul>
@@ -224,6 +240,8 @@
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
+    <a href="https://github.com/12052" target="_blank" rel="noopener" class="mobile-nav-link">Github</a>
+  
 </nav>
     
 
@@ -244,6 +262,21 @@
 
 
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
