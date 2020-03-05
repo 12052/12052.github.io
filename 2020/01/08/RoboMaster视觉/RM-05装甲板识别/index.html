@@ -7,18 +7,21 @@
   
   <title>RM-05装甲板识别 | 一只海鲜的海底世界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概述本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件ArmorFinder.h及对应源文件。">
+  <meta name="description" content="RM-05装甲板识别0 概述本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件ArmorFinder.h及对应源文件。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RM-05装甲板识别">
 <meta property="og:url" content="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/index.html">
 <meta property="og:site_name" content="一只海鲜的海底世界">
-<meta property="og:description" content="概述本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件ArmorFinder.h及对应源文件。">
+<meta property="og:description" content="RM-05装甲板识别0 概述本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件ArmorFinder.h及对应源文件。">
 <meta property="og:locale" content="ch">
+<meta property="og:image" content="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/%E7%81%AF%E6%9D%A1%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/%E8%A3%85%E7%94%B2%E6%9D%BF%E5%8C%B9%E9%85%8D%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
 <meta property="article:published_time" content="2020-01-08T02:33:17.000Z">
-<meta property="article:modified_time" content="2020-02-24T03:13:08.010Z">
+<meta property="article:modified_time" content="2020-03-05T03:23:38.897Z">
 <meta property="article:author" content="孙霖">
 <meta property="article:tag" content="激情 阳光 乐观">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/%E7%81%AF%E6%9D%A1%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
   
     <link rel="alternate" href="/atom.xml" title="一只海鲜的海底世界" type="application/atom+xml">
   
@@ -95,12 +98,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件<a href="https://github.com/12052/RoboMaster-Vision2020/blob/dev/Codes/ArmorFinder/include/ArmorFinder.h" target="_blank" rel="noopener">ArmorFinder.h</a>及对应源文件。<br><a id="more"></a></p>
-<h2 id="灯条识别"><a href="#灯条识别" class="headerlink" title="灯条识别"></a>灯条识别</h2>
+        <h1 id="RM-05装甲板识别"><a href="#RM-05装甲板识别" class="headerlink" title="RM-05装甲板识别"></a>RM-05装甲板识别</h1><h2 id="0-概述"><a href="#0-概述" class="headerlink" title="0 概述"></a>0 概述</h2><p>本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件<a href="https://github.com/12052/RoboMaster-Vision2020/blob/dev/Codes/ArmorFinder/include/ArmorFinder.h" target="_blank" rel="noopener">ArmorFinder.h</a>及对应源文件。<br><a id="more"></a></p>
+<h2 id="1-灯条识别"><a href="#1-灯条识别" class="headerlink" title="1 灯条识别"></a>1 灯条识别</h2><h3 id="1-1-R代码中的识别方法"><a href="#1-1-R代码中的识别方法" class="headerlink" title="1.1 R代码中的识别方法"></a>1.1 R代码中的识别方法</h3><p>本代码地址为<a href="https://github.com/12052/RoboMaster-Vision2020" target="_blank" rel="noopener">Github地址</a>中的Codes/ArmorFinder/src/FindLightBlobs.cpp文件。<br>灯条识别过程的流程图如图所示：<br><img src="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/灯条识别流程图.png" alt="灯条识别流程图"><br>代码中对于灯条的筛选条件为长宽比为6-22，目前看来这种方式对于灯条的筛选过于严格，后面会想办法改进参考方式。这导致了在较远距离范围不能够合理的识别到灯条，因此会用其他方法取代利用长宽比的方法。</p>
+<h3 id="1-3-网络上的识别方法"><a href="#1-3-网络上的识别方法" class="headerlink" title="1.3 网络上的识别方法"></a>1.3 网络上的识别方法</h3><h2 id="2-装甲板匹配"><a href="#2-装甲板匹配" class="headerlink" title="2 装甲板匹配"></a>2 装甲板匹配</h2><p>装甲板分为大装甲板与小装甲板，目前效果看来，在合适的距离上，大小装甲板识别工作是可以比较准确的完成的，装甲板问题都出在先前的灯条问题。本代码地址为<a href="https://github.com/12052/RoboMaster-Vision2020" target="_blank" rel="noopener">Github地址</a>中的Codes/ArmorFinder/src/ArmorDetect.cpp文件。<br>装甲板匹配流程图如图所示：<br><img src="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/装甲板匹配流程图.png" alt="装甲板匹配流程图"><br>本部分代码主要是参考上交交龙战队所开放源码基础上，没有啥大的改动。<br>同时，因为与交龙灯条识别代码的不同（本代码与上交灯条效果相比，圈灯条的条件更加严格，所以并不需要这么严格的装甲板匹配函数），判断为CoupleLightBlobs时，只使用了错位度、长度、长度比、角度差的判断。同时，以下代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (min_x &lt; <span class="number">0</span> || max_x &gt; src.cols || min_y &lt; <span class="number">0</span> || max_y &gt; src.rows) &#123;</span><br><span class="line">                    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Wrong Size Box"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure><br>这段代码必须要有，因为逻辑上可能会有缺陷，如果装甲板信息冲突的话会直接造成程序退出。</p>
+<p>同时，后期可能会将显示灯条、装甲板的函数拿出放到单独的框出函数，并且会再重新考虑二值化滤波等处理是否有必要拿出到Preprocess中，并考虑速度问题。如果两者相差可以接受的话，我感觉将图像预处理拿出来更好。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" data-id="ck78hhmv0000j9fzv7eslamu2" class="article-share-link">Share</a>
+      <a data-url="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" data-id="ck7e7o8y2000cpwzv9ond1tkf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -255,20 +261,5 @@
 
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
