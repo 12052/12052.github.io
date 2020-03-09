@@ -10,18 +10,18 @@
   <meta name="description" content="RM-05装甲板识别0 概述本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件ArmorFinder.h及对应源文件。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RM-05装甲板识别">
-<meta property="og:url" content="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/index.html">
+<meta property="og:url" content="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/index.html">
 <meta property="og:site_name" content="一只海鲜的海底世界">
 <meta property="og:description" content="RM-05装甲板识别0 概述本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件ArmorFinder.h及对应源文件。">
 <meta property="og:locale" content="ch">
-<meta property="og:image" content="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/%E7%81%AF%E6%9D%A1%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
-<meta property="og:image" content="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/%E8%A3%85%E7%94%B2%E6%9D%BF%E5%8C%B9%E9%85%8D%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
-<meta property="article:published_time" content="2020-01-08T02:33:17.000Z">
-<meta property="article:modified_time" content="2020-03-05T03:23:38.897Z">
+<meta property="og:image" content="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/%E7%81%AF%E6%9D%A1%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/%E8%A3%85%E7%94%B2%E6%9D%BF%E5%8C%B9%E9%85%8D%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="article:published_time" content="2020-03-05T02:33:17.000Z">
+<meta property="article:modified_time" content="2020-03-05T06:50:01.113Z">
 <meta property="article:author" content="孙霖">
 <meta property="article:tag" content="激情 阳光 乐观">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/%E7%81%AF%E6%9D%A1%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta name="twitter:image" content="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/%E7%81%AF%E6%9D%A1%E8%AF%86%E5%88%AB%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
   
     <link rel="alternate" href="/atom.xml" title="一只海鲜的海底世界" type="application/atom+xml">
   
@@ -74,8 +74,8 @@
       <div class="outer">
         <section id="main"><article id="post-RoboMaster视觉/RM-05装甲板识别" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" class="article-date">
-  <time datetime="2020-01-08T02:33:17.000Z" itemprop="datePublished">2020-01-08</time>
+    <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" class="article-date">
+  <time datetime="2020-03-05T02:33:17.000Z" itemprop="datePublished">2020-03-05</time>
 </a>
     
   <div class="article-category">
@@ -99,14 +99,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="RM-05装甲板识别"><a href="#RM-05装甲板识别" class="headerlink" title="RM-05装甲板识别"></a>RM-05装甲板识别</h1><h2 id="0-概述"><a href="#0-概述" class="headerlink" title="0 概述"></a>0 概述</h2><p>本篇将实现对敌方战车装甲板的识别和标定。主要包括灯条识别、装甲板识别、自动瞄准三个部分，相关定义可参考文件<a href="https://github.com/12052/RoboMaster-Vision2020/blob/dev/Codes/ArmorFinder/include/ArmorFinder.h" target="_blank" rel="noopener">ArmorFinder.h</a>及对应源文件。<br><a id="more"></a></p>
-<h2 id="1-灯条识别"><a href="#1-灯条识别" class="headerlink" title="1 灯条识别"></a>1 灯条识别</h2><h3 id="1-1-R代码中的识别方法"><a href="#1-1-R代码中的识别方法" class="headerlink" title="1.1 R代码中的识别方法"></a>1.1 R代码中的识别方法</h3><p>本代码地址为<a href="https://github.com/12052/RoboMaster-Vision2020" target="_blank" rel="noopener">Github地址</a>中的Codes/ArmorFinder/src/FindLightBlobs.cpp文件。<br>灯条识别过程的流程图如图所示：<br><img src="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/灯条识别流程图.png" alt="灯条识别流程图"><br>代码中对于灯条的筛选条件为长宽比为6-22，目前看来这种方式对于灯条的筛选过于严格，后面会想办法改进参考方式。这导致了在较远距离范围不能够合理的识别到灯条，因此会用其他方法取代利用长宽比的方法。</p>
-<h3 id="1-3-网络上的识别方法"><a href="#1-3-网络上的识别方法" class="headerlink" title="1.3 网络上的识别方法"></a>1.3 网络上的识别方法</h3><h2 id="2-装甲板匹配"><a href="#2-装甲板匹配" class="headerlink" title="2 装甲板匹配"></a>2 装甲板匹配</h2><p>装甲板分为大装甲板与小装甲板，目前效果看来，在合适的距离上，大小装甲板识别工作是可以比较准确的完成的，装甲板问题都出在先前的灯条问题。本代码地址为<a href="https://github.com/12052/RoboMaster-Vision2020" target="_blank" rel="noopener">Github地址</a>中的Codes/ArmorFinder/src/ArmorDetect.cpp文件。<br>装甲板匹配流程图如图所示：<br><img src="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/装甲板匹配流程图.png" alt="装甲板匹配流程图"><br>本部分代码主要是参考上交交龙战队所开放源码基础上，没有啥大的改动。<br>同时，因为与交龙灯条识别代码的不同（本代码与上交灯条效果相比，圈灯条的条件更加严格，所以并不需要这么严格的装甲板匹配函数），判断为CoupleLightBlobs时，只使用了错位度、长度、长度比、角度差的判断。同时，以下代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (min_x &lt; <span class="number">0</span> || max_x &gt; src.cols || min_y &lt; <span class="number">0</span> || max_y &gt; src.rows) &#123;</span><br><span class="line">                    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Wrong Size Box"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure><br>这段代码必须要有，因为逻辑上可能会有缺陷，如果装甲板信息冲突的话会直接造成程序退出。</p>
+<h2 id="1-灯条识别"><a href="#1-灯条识别" class="headerlink" title="1 灯条识别"></a>1 灯条识别</h2><h3 id="1-1-R代码中的识别方法"><a href="#1-1-R代码中的识别方法" class="headerlink" title="1.1 R代码中的识别方法"></a>1.1 R代码中的识别方法</h3><p>本代码地址为<a href="https://github.com/12052/RoboMaster-Vision2020" target="_blank" rel="noopener">Github地址</a>中的Codes/ArmorFinder/src/FindLightBlobs.cpp文件。<br>灯条识别过程的流程图如图所示：<br><img src="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/灯条识别流程图.png" alt="灯条识别流程图"><br>代码中对于灯条的筛选条件为长宽比为6-22，目前看来这种方式对于灯条的筛选过于严格，后面会想办法改进参考方式。这导致了在较远距离范围不能够合理的识别到灯条，因此会用其他方法取代利用长宽比的方法。</p>
+<h3 id="1-3-网络上的识别方法"><a href="#1-3-网络上的识别方法" class="headerlink" title="1.3 网络上的识别方法"></a>1.3 网络上的识别方法</h3><h2 id="2-装甲板匹配"><a href="#2-装甲板匹配" class="headerlink" title="2 装甲板匹配"></a>2 装甲板匹配</h2><p>装甲板分为大装甲板与小装甲板，目前效果看来，在合适的距离上，大小装甲板识别工作是可以比较准确的完成的，装甲板问题都出在先前的灯条问题。本代码地址为<a href="https://github.com/12052/RoboMaster-Vision2020" target="_blank" rel="noopener">Github地址</a>中的Codes/ArmorFinder/src/ArmorDetect.cpp文件。<br>装甲板匹配流程图如图所示：<br><img src="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/装甲板匹配流程图.png" alt="装甲板匹配流程图"><br>本部分代码主要是参考上交交龙战队所开放源码基础上，没有啥大的改动。<br>同时，因为与交龙灯条识别代码的不同（本代码与上交灯条效果相比，圈灯条的条件更加严格，所以并不需要这么严格的装甲板匹配函数），判断为CoupleLightBlobs时，只使用了错位度、长度、长度比、角度差的判断。同时，以下代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (min_x &lt; <span class="number">0</span> || max_x &gt; src.cols || min_y &lt; <span class="number">0</span> || max_y &gt; src.rows) &#123;</span><br><span class="line">                    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Wrong Size Box"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure><br>这段代码必须要有，因为逻辑上可能会有缺陷，如果装甲板信息冲突的话会直接造成程序退出。</p>
 <p>同时，后期可能会将显示灯条、装甲板的函数拿出放到单独的框出函数，并且会再重新考虑二值化滤波等处理是否有必要拿出到Preprocess中，并考虑速度问题。如果两者相差可以接受的话，我感觉将图像预处理拿出来更好。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://12052.life/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" data-id="ck7e7o8y2000cpwzv9ond1tkf" class="article-share-link">Share</a>
+      <a data-url="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" data-id="ck7k7l3yu000873zv2tovb8n0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -115,17 +115,17 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-04%E8%87%AA%E5%8A%A8%E7%9E%84%E5%87%86/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          RM-03相机驱动
+          目标追踪
         
       </div>
     </a>
   
   
-    <a href="/2020/01/08/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">RM-01视觉综述</div>
     </a>
@@ -182,7 +182,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
     </div>
   </div>
 
@@ -195,23 +195,23 @@
       <ul>
         
           <li>
-            <a href="/2020/03/01/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM-05%E5%BB%BA%E5%9B%BE/">视觉SLAM-04建图</a>
+            <a href="/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/">RM-03相机驱动</a>
           </li>
         
           <li>
-            <a href="/2020/02/25/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM-04%E9%9D%9E%E7%BA%BF%E6%80%A7%E4%BC%98%E5%8C%96/">视觉SLAM-04非线性优化</a>
+            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E5%BC%B9%E9%81%93%E6%A8%A1%E5%9E%8B/">RM-06弹道模型</a>
           </li>
         
           <li>
-            <a href="/2020/02/24/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM-03%E6%9D%8E%E7%BE%A4%E4%B8%8E%E6%9D%8E%E4%BB%A3%E6%95%B0/">视觉SLAM03-李群与李代数</a>
+            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-04%E8%87%AA%E5%8A%A8%E7%9E%84%E5%87%86/">目标追踪</a>
           </li>
         
           <li>
-            <a href="/2020/02/20/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM-02%E4%B8%89%E7%BB%B4%E5%88%9A%E4%BD%93%E8%BF%90%E5%8A%A8/">视觉SLAM-02三维刚体运动</a>
+            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/">RM-05装甲板识别</a>
           </li>
         
           <li>
-            <a href="/2020/02/19/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM-01%E6%8B%BC%E6%8E%A5%E7%82%B9%E4%BA%91/">视觉SLAM-01拼接点云</a>
+            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
           </li>
         
       </ul>
@@ -261,5 +261,20 @@
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

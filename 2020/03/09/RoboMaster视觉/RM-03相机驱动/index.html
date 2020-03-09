@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>RM-03相机驱动 | 一只海鲜的海底世界</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概述本篇主要讲解所使用海康威视工业相机MV-CA013-20UM型号工业相机以及雷达所使用的ZED双目相机。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RM-03相机驱动">
+<meta property="og:url" content="http://12052.life/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/index.html">
+<meta property="og:site_name" content="一只海鲜的海底世界">
+<meta property="og:description" content="概述本篇主要讲解所使用海康威视工业相机MV-CA013-20UM型号工业相机以及雷达所使用的ZED双目相机。">
+<meta property="og:locale" content="ch">
+<meta property="og:image" content="http://12052.life/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/ZED-2.png">
+<meta property="article:published_time" content="2020-03-09T02:33:55.000Z">
+<meta property="article:modified_time" content="2020-03-09T08:33:12.998Z">
+<meta property="article:author" content="孙霖">
+<meta property="article:tag" content="激情 阳光 乐观">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://12052.life/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/ZED-2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="一只海鲜的海底世界" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只海鲜的海底世界</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="https://github.com/12052" target="_blank" rel="noopener">Github</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://12052.life"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-RoboMaster视觉/RM-03相机驱动" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/" class="article-date">
+  <time datetime="2020-03-09T02:33:55.000Z" itemprop="datePublished">2020-03-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RM-03相机驱动
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本篇主要讲解所使用海康威视工业相机MV-CA013-20UM型号工业相机以及雷达所使用的ZED双目相机。<br><a id="more"></a></p>
+<h2 id="1-单目相机"><a href="#1-单目相机" class="headerlink" title="1 单目相机"></a>1 单目相机</h2><h3 id="1-1-相机选型"><a href="#1-1-相机选型" class="headerlink" title="1.1 相机选型"></a>1.1 相机选型</h3><p>本设计采用的是海康威视的MV-CA013-20UM型号工业相机，大致参数如网址<a href="https://www.hikrobotics.com/vision/visioninfo.htm?type=43&amp;oid=2433" target="_blank" rel="noopener">海康威视工业相机CA013</a>。</p>
+<h3 id="1-2-关键参数"><a href="#1-2-关键参数" class="headerlink" title="1.2 关键参数"></a>1.2 关键参数</h3><h4 id="曝光时间"><a href="#曝光时间" class="headerlink" title="曝光时间"></a>曝光时间</h4><p>曝光时间是为了将光投射到照相感光材料的感光面上，快门所要打开的时间。视照相感光材料的感光度和对感光面上的照度而定。曝光时间长的话进的光就多，适合光线条件比较差的情况。曝光时间短则适合光线比较好的情况。<br>随着曝光时间的增加，噪声也会积累。</p>
+<h4 id="增益"><a href="#增益" class="headerlink" title="增益"></a>增益</h4><p>增益一般只是在信号弱，但不想增加曝光时间的情况下使用。一般相机增益都产生很大噪音的，所以几乎不怎么用，当然，EMCCD另说了。<br>曝光 和 增益 是直接控制传感器（CCD/CMOS）上读出来的数据，是要优先调节的，以调节曝光时间为主。</p>
+<h4 id="饱和度"><a href="#饱和度" class="headerlink" title="饱和度"></a>饱和度</h4><p>饱和度就是色彩饱和度，这是彩色相机特有的。饱和度取决于该色中含色成分和消色成分(灰色)的比例。含色成分越大，饱和度越大；消色成分越大，饱和度越小。</p>
+<h4 id="伽马"><a href="#伽马" class="headerlink" title="伽马"></a>伽马</h4><p>按幂函数对亮度值重新分布，伽玛就是指数。伽玛大于1使亮的更亮暗的更暗，可以抹掉一些弱信号；小于1则相反可以让较弱信号显示出来</p>
+<h4 id="对比度"><a href="#对比度" class="headerlink" title="对比度"></a>对比度</h4><p>图像最亮和最暗之间的区域之间的比率，比值越大，从黑到白的渐变层次就越多，从而色彩表现越丰富。<br>对比度指的是一幅图像中明暗区域最亮的白和最暗的黑之间不同亮度层级的测量，差异范围越大代表对比越大，差异范围越小代表对比越小，好的对比率120:1就可容易地显示生动、丰富的色彩，当对比率高达300:1时，便可支持各阶的颜色。</p>
+<h4 id="锐度"><a href="#锐度" class="headerlink" title="锐度"></a>锐度</h4><p>锐度指的是增加分割画面区域的边缘线周边的对比度，从而达到刻痕的效果，使得内容更加锐利。锐化仅会影响少部分边缘像素的对比度，整个画面并不会受到大量的影响。</p>
+<h3 id="1-3-相机驱动"><a href="#1-3-相机驱动" class="headerlink" title="1.3 相机驱动"></a>1.3 相机驱动</h3><p>由相机文档图（后面补充），结合<a href="https://github.com/12052/RoboMaster-Vision2020/tree/dev/Codes/ArmorFinder/include" target="_blank" rel="noopener">CameraInit.cpp</a>文件编写相机驱动文件。</p>
+<h3 id="1-4-相机参数调节"><a href="#1-4-相机参数调节" class="headerlink" title="1.4 相机参数调节"></a>1.4 相机参数调节</h3><p>目前为止只使用了调节相机曝光时间的设置，具体参数设置会后期跟进。</p>
+<h2 id="2-双目相机"><a href="#2-双目相机" class="headerlink" title="2 双目相机"></a>2 双目相机</h2><h3 id="2-1-相机简介"><a href="#2-1-相机简介" class="headerlink" title="2.1 相机简介"></a>2.1 相机简介</h3><p>雷达方案使用的是ZED双目相机，该相机模仿的是人眼工作原理，该相机提供所视景象的三维解释。<br><img src="/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/ZED-2.png" alt="ZED双目相机"><br>新手使用步骤：</p>
+<ul>
+<li>阅读Getting Started章节</li>
+<li>阅读和理解相机传感器的特性</li>
+<li>学习如何使用深度、追踪、建图和具体AI模型</li>
+<li>使用教程和历程开始二次开发<h3 id="2-2-快速开始"><a href="#2-2-快速开始" class="headerlink" title="2.2 快速开始"></a>2.2 快速开始</h3></li>
+<li>物品包含ZED相机、1.2米的USB3.0的信号线、支架</li>
+<li>相机支持UVC协议，插入即可自动识别，并不需要驱动。</li>
+<li>下载ZED SDK支持包，包含应用程序可支持Windows、Linux和Nvidia Jetson平台。<a href="https://www.stereolabs.com/docs/installation/linux/" target="_blank" rel="noopener">Linux端安装过程</a></li>
+<li>建议使用Docker运行</li>
+<li>ZED Exploer在安装后可以显示两个镜头中的彩色图。位置是<code>/usr/local/zed/tools/ZED Explorer</code></li>
+<li>输出深度图 ZED Depth Viewer，运行程序为<code>/usr/local/zed/tools/ZED Explorer</code></li>
+<li><a href="https://github.com/stereolabs" target="_blank" rel="noopener">更新的Github地址</a><h3 id="2-3-立体信息"><a href="#2-3-立体信息" class="headerlink" title="2.3 立体信息"></a>2.3 立体信息</h3>ZED是带有双镜头的相机。 它可以捕获宽视角的高清3D视频，并在USB 3.0上以并排格式输出两个左右同步的视频流。<h3 id="2-4-深度预测"><a href="#2-4-深度预测" class="headerlink" title="2.4 深度预测"></a>2.4 深度预测</h3>深度预测可以输出两个目标之间的距离和三维世界，到目前为止，深度预测的距离室内距离有限，应用于姿态识别和人体追踪。</li>
+<li>深度探测距离为20m。</li>
+<li>帧率达到100FPS。</li>
+<li>视野范围110°（水平）x 70°（垂直）。</li>
+<li>可在室内和室外工作。<h3 id="2-5-人体追踪"><a href="#2-5-人体追踪" class="headerlink" title="2.5 人体追踪"></a>2.5 人体追踪</h3>后期会看有没有可能转换为其他形式的追踪。<h3 id="2-6-空间映射"><a href="#2-6-空间映射" class="headerlink" title="2.6 空间映射"></a>2.6 空间映射</h3>建立环境的数字点云模型。<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><a href="https://blog.csdn.net/qq_20848403/article/details/81198540" target="_blank" rel="noopener">CSDN博客 工业视觉 四 曝光与增益 、伽马、饱和度、对比度、锐度、黑电平</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://12052.life/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/" data-id="ck7k7l3yp000373zvfqe3e15v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E5%BC%B9%E9%81%93%E6%A8%A1%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">RM-06弹道模型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+      <h3 class="widget-title">author</h3>
+      <div class="widget">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%BC%E5%90%88/">综合</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%A7%86%E8%A7%89SLAM/">视觉SLAM</a></li></ul>
+      </div>
+    </div>
+  
+  
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RoboMaster%E8%A7%86%E8%A7%89/">RoboMaster视觉</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%BC%E5%90%88/">综合</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%A7%86%E8%A7%89SLAM/">视觉SLAM</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E5%9B%BE/" rel="tag">建图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E8%A7%89SLAM/" rel="tag">视觉SLAM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%A7%86%E8%A7%89SLAM-%E6%9D%8E%E7%BE%A4-%E6%9D%8E%E4%BB%A3%E6%95%B0/" rel="tag">视觉SLAM 李群 李代数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E4%BC%98%E5%8C%96/" rel="tag">非线性优化</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E5%BB%BA%E5%9B%BE/" style="font-size: 10px;">建图</a> <a href="/tags/%E8%A7%86%E8%A7%89SLAM/" style="font-size: 20px;">视觉SLAM</a> <a href="/tags/%E8%A7%86%E8%A7%89SLAM-%E6%9D%8E%E7%BE%A4-%E6%9D%8E%E4%BB%A3%E6%95%B0/" style="font-size: 10px;">视觉SLAM 李群 李代数</a> <a href="/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E4%BC%98%E5%8C%96/" style="font-size: 10px;">非线性优化</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/">RM-03相机驱动</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E5%BC%B9%E9%81%93%E6%A8%A1%E5%9E%8B/">RM-06弹道模型</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-04%E8%87%AA%E5%8A%A8%E7%9E%84%E5%87%86/">目标追踪</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/">RM-05装甲板识别</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 孙霖<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/12052" target="_blank" rel="noopener" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
