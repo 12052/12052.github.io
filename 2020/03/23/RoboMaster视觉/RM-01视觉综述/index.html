@@ -5,17 +5,17 @@
   
 
   
-  <title>RM-06弹道模型 | 一只海鲜的海底世界</title>
+  <title>RM-01视觉综述 | 一只海鲜的海底世界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="RM-06弹道模型0 概述本篇将实现对子弹弹道模型的建模以及飞镖的弹道建模。子弹包括大弹丸和小弹丸。">
+  <meta name="description" content="RM-01视觉综述因为一些原因我准备自己着手实现一套RoboMaster的代码，开始吧。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RM-06弹道模型">
-<meta property="og:url" content="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E5%BC%B9%E9%81%93%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:title" content="RM-01视觉综述">
+<meta property="og:url" content="http://12052.life/2020/03/23/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/index.html">
 <meta property="og:site_name" content="一只海鲜的海底世界">
-<meta property="og:description" content="RM-06弹道模型0 概述本篇将实现对子弹弹道模型的建模以及飞镖的弹道建模。子弹包括大弹丸和小弹丸。">
+<meta property="og:description" content="RM-01视觉综述因为一些原因我准备自己着手实现一套RoboMaster的代码，开始吧。">
 <meta property="og:locale" content="ch">
-<meta property="article:published_time" content="2020-03-05T06:52:30.000Z">
-<meta property="article:modified_time" content="2020-03-09T07:53:23.111Z">
+<meta property="article:published_time" content="2020-03-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-23T02:08:09.313Z">
 <meta property="article:author" content="孙霖">
 <meta property="article:tag" content="激情 阳光 乐观">
 <meta name="twitter:card" content="summary">
@@ -69,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-RoboMaster视觉/RM-06弹道模型" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-RoboMaster视觉/RM-01视觉综述" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E5%BC%B9%E9%81%93%E6%A8%A1%E5%9E%8B/" class="article-date">
-  <time datetime="2020-03-05T06:52:30.000Z" itemprop="datePublished">2020-03-05</time>
+    <a href="/2020/03/23/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" class="article-date">
+  <time datetime="2020-03-22T16:00:00.000Z" itemprop="datePublished">2020-03-23</time>
 </a>
     
   <div class="article-category">
@@ -87,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      RM-06弹道模型
+      RM-01视觉综述
     </h1>
   
 
@@ -95,14 +95,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="RM-06弹道模型"><a href="#RM-06弹道模型" class="headerlink" title="RM-06弹道模型"></a>RM-06弹道模型</h1><h2 id="0-概述"><a href="#0-概述" class="headerlink" title="0 概述"></a>0 概述</h2><p>本篇将实现对子弹弹道模型的建模以及飞镖的弹道建模。子弹包括大弹丸和小弹丸。<br><a id="more"></a></p>
-<h2 id="1-原理"><a href="#1-原理" class="headerlink" title="1 原理"></a>1 原理</h2><p>研究弹丸的运动规律，即火控外弹道模型问题，即为在<strong>实际情况下的弹丸运动微分方程组</strong>，根据设计条件偏差量计算射击诸元修正量。 </p>
-<h3 id="1-1-射表及其函数逼近"><a href="#1-1-射表及其函数逼近" class="headerlink" title="1.1 射表及其函数逼近"></a>1.1 射表及其函数逼近</h3><p>射表是基于特定的弹、炮、药（摩擦轮）,在实际条件下使用的，含有所需射击诸元的数字表或图表。射表内容包括基本诸元、修正诸元、散布诸元、辅助诸元和射表说明等。<br>102<br>基本诸元是指在标准条件下计算得到的弹道诸元，主要是指距离、基本瞄准角、以及落角、落速、飞行时间和弹道顶点高度。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+        <h1 id="RM-01视觉综述"><a href="#RM-01视觉综述" class="headerlink" title="RM-01视觉综述"></a>RM-01视觉综述</h1><p>因为一些原因我准备自己着手实现一套RoboMaster的代码，开始吧。<br><a id="more"></a>　</p>
+<h2 id="1-结合实际车辆"><a href="#1-结合实际车辆" class="headerlink" title="1 结合实际车辆"></a>1 结合实际车辆</h2><p>主要以步兵车辆为例，在步兵兵种中需要完成目标装甲板识别、目标运动状态预测、能量机关装甲板识别、能量机关模板匹配、相机基础驱动等主要内容，所以以步兵车辆为基础可以实现对视觉组的大部分需求。目前我们组以上功能都可以实现，而且效果较好。</p>
+<ul>
+<li>相机驱动使用的为海康威视工业相机，销售提供的例程已经十分完整可用，主要用到的是在程序初始化的时候初始化相机，这一部分的要求为在保证相机性能稳定的情况下确定合适的曝光等参数，使两者的性能和稳定相互平衡达到最优。</li>
+<li>第二步进行的是灯条和装甲板的识别，根据交大代码的流程，灯条和装甲板分别作为两个类来运行，自动寻找灯条和装甲板的外部流程作为一个类，要求在低曝光情况下可以准确的框到灯条、装甲板并利用最基本的分类器实现数字识别。</li>
+<li>自动瞄准的功能是实现步兵战车的模式切换，步兵战车共分为三种模式（现已实现两种），包括搜寻模式和追踪模式，首先搜寻并根据打击优先级（根据战术确定）确定目标装甲板，之后进入追踪模式对目标进行追踪，具体跟踪方式见04。</li>
+<li>保证打击准确率主要包括建立射击弹道表和目标预测，重点是利用这些参数来保证射击线的确立，如何把目前存在的理论及方法落实到准确数据上。</li>
+</ul>
+<h2 id="2-特殊车辆"><a href="#2-特殊车辆" class="headerlink" title="2 特殊车辆"></a>2 特殊车辆</h2><h3 id="2-1-雷达"><a href="#2-1-雷达" class="headerlink" title="2.1 雷达"></a>2.1 雷达</h3><p>雷达作为今年新加兵种，主要起到全局观测、预警、提供全局视野的作用，同时还有辅助哨兵做出判断的作用，在刚开始考虑雷达的阶段，确实是因为没有经验耽搁了大量的时间，到最后方案的确立已经是今天（2020/3/23），主要方案为双目相机作为传感器，利用深度学习识别彩色图像中的车辆信息，甚至有机会识别飞镖。</p>
+<h3 id="２-2-哨兵"><a href="#２-2-哨兵" class="headerlink" title="　２.2 哨兵"></a>　２.2 哨兵</h3><p>哨兵作为防御全自动兵种，重点是哨兵的架构逻辑和战术目标选择，如设立ＲＯＩ或者分析当前局势等。</p>
+<h3 id="2-3-英雄机器人"><a href="#2-3-英雄机器人" class="headerlink" title="2.3 英雄机器人"></a>2.3 英雄机器人</h3><p>今年的英雄机器人可以携带两个枪口，也就是会有两个独立的云台，这需要一个妙算的两个ｕｓｂ和两个ＣＡＮ总线接口，具体战术再更新。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>《火控系统设计概论》，高强等。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E5%BC%B9%E9%81%93%E6%A8%A1%E5%9E%8B/" data-id="ck7k7l3ys000673zvcdh59of1" class="article-share-link">Share</a>
+      <a data-url="http://12052.life/2020/03/23/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" data-id="ck83uc9yg0003z4zv69pkfqar" class="article-share-link">Share</a>
       
       
     </footer>
@@ -111,19 +120,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          RM-03相机驱动
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-04%E8%87%AA%E5%8A%A8%E7%9E%84%E5%87%86/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/03/16/ns-3/ns-3-01%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">目标追踪</div>
+      <div class="article-nav-title">ns-3/ns-3-01软件安装</div>
     </a>
   
 </nav>
@@ -191,23 +191,23 @@
       <ul>
         
           <li>
+            <a href="/2020/03/23/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/ns-3/ns-3-01%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">ns-3/ns-3-01软件安装</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/">RM-03相机驱动</a>
           </li>
         
           <li>
-            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E5%BC%B9%E9%81%93%E6%A8%A1%E5%9E%8B/">RM-06弹道模型</a>
+            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E7%81%AB%E6%8E%A7%E7%B3%BB%E7%BB%9F/">RM-06火控系统</a>
           </li>
         
           <li>
             <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-04%E8%87%AA%E5%8A%A8%E7%9E%84%E5%87%86/">目标追踪</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/">RM-05装甲板识别</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
           </li>
         
       </ul>

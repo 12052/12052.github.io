@@ -5,17 +5,17 @@
   
 
   
-  <title>RM-01视觉综述 | 一只海鲜的海底世界</title>
+  <title>RM-06火控系统 | 一只海鲜的海底世界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概述因为一些原因我准备自己着手实现一套RoboMaster的代码，废话不多说，开始吧。">
+  <meta name="description" content="RM-06火控系统0 概述本篇将实现对子弹弹道模型的建模以及飞镖的弹道建模。子弹包括大弹丸和小弹丸。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RM-01视觉综述">
-<meta property="og:url" content="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:title" content="RM-06火控系统">
+<meta property="og:url" content="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E7%81%AB%E6%8E%A7%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="一只海鲜的海底世界">
-<meta property="og:description" content="概述因为一些原因我准备自己着手实现一套RoboMaster的代码，废话不多说，开始吧。">
+<meta property="og:description" content="RM-06火控系统0 概述本篇将实现对子弹弹道模型的建模以及飞镖的弹道建模。子弹包括大弹丸和小弹丸。">
 <meta property="og:locale" content="ch">
-<meta property="article:published_time" content="2020-03-05T02:16:53.000Z">
-<meta property="article:modified_time" content="2020-03-05T06:49:53.925Z">
+<meta property="article:published_time" content="2020-03-05T06:52:30.000Z">
+<meta property="article:modified_time" content="2020-03-23T01:44:24.115Z">
 <meta property="article:author" content="孙霖">
 <meta property="article:tag" content="激情 阳光 乐观">
 <meta name="twitter:card" content="summary">
@@ -69,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-RoboMaster视觉/RM-01视觉综述" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-RoboMaster视觉/RM-06火控系统" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" class="article-date">
-  <time datetime="2020-03-05T02:16:53.000Z" itemprop="datePublished">2020-03-05</time>
+    <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E7%81%AB%E6%8E%A7%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time datetime="2020-03-05T06:52:30.000Z" itemprop="datePublished">2020-03-05</time>
 </a>
     
   <div class="article-category">
@@ -87,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      RM-01视觉综述
+      RM-06火控系统
     </h1>
   
 
@@ -95,8 +95,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>因为一些原因我准备自己着手实现一套RoboMaster的代码，废话不多说，开始吧。<br><a id="more"></a></p>
-<h2 id="火控系统定义"><a href="#火控系统定义" class="headerlink" title="火控系统定义"></a>火控系统定义</h2><p><strong>火控系统</strong>是为了实现火控全过程所需要的各种相互作用、相互依赖的设备的总称。</p>
+        <h1 id="RM-06火控系统"><a href="#RM-06火控系统" class="headerlink" title="RM-06火控系统"></a>RM-06火控系统</h1><h2 id="0-概述"><a href="#0-概述" class="headerlink" title="0 概述"></a>0 概述</h2><p>本篇将实现对子弹弹道模型的建模以及飞镖的弹道建模。子弹包括大弹丸和小弹丸。<br><a id="more"></a></p>
+<h2 id="１-火控系统定义"><a href="#１-火控系统定义" class="headerlink" title="１ 火控系统定义"></a>１ 火控系统定义</h2><p><strong>火控系统</strong>是为了实现火控全过程所需要的各种相互作用、相互依赖的设备的总称。</p>
 <p><strong>瞄准矢量</strong>是指以观测器材回转中心为始点、目标中心为终点的矢量。常使用球坐标系。</p>
 <p><strong>瞄准线</strong>是指以观测器材回转中心为起始点，通过目标中心的射线。</p>
 <p><strong>跟踪线</strong>是指目标自动跟踪器的基准点与目标探测位置的连线。</p>
@@ -105,12 +105,14 @@
 <p><strong>现在点</strong>是指将目标视为一个点，在弹头每次发射瞬间，目标所处的空间点。</p>
 <p><strong>未来点</strong>又称命中点或提前点，是指目标与弹头相碰撞的空间点。</p>
 <p><strong>射击诸元</strong>主要指射击线在大地坐标系中的方位角和射角。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>《火控系统设计概论》，高强等。</p>
-
+<h2 id="2-原理"><a href="#2-原理" class="headerlink" title="2 原理"></a>2 原理</h2><p>研究弹丸的运动规律，即火控外弹道模型问题，即为在<strong>实际情况下的弹丸运动微分方程组</strong>，根据设计条件偏差量计算射击诸元修正量。 </p>
+<h3 id="2-1-射表及其函数逼近"><a href="#2-1-射表及其函数逼近" class="headerlink" title="2.1 射表及其函数逼近"></a>2.1 射表及其函数逼近</h3><p>射表是基于特定的弹、炮、药（摩擦轮）,在实际条件下使用的，含有所需射击诸元的数字表或图表。射表内容包括基本诸元、修正诸元、散布诸元、辅助诸元和射表说明等。</p>
+<p>基本诸元是指在标准条件下计算得到的弹道诸元，主要是指距离、基本瞄准角、以及落角、落速、飞行时间和弹道顶点高度。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/" data-id="ck7k7l3yw000a73zvh6w90f3o" class="article-share-link">Share</a>
+      <a data-url="http://12052.life/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E7%81%AB%E6%8E%A7%E7%B3%BB%E7%BB%9F/" data-id="ck83uc9yn000az4zvahcte5o9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -119,19 +121,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          RM-05装甲板识别
+          RM-03相机驱动
         
       </div>
     </a>
   
   
-    <a href="/2020/03/01/%E8%A7%86%E8%A7%89SLAM/%E8%A7%86%E8%A7%89SLAM-05%E5%BB%BA%E5%9B%BE/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-04%E8%87%AA%E5%8A%A8%E7%9E%84%E5%87%86/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">视觉SLAM-04建图</div>
+      <div class="article-nav-title">目标追踪</div>
     </a>
   
 </nav>
@@ -199,23 +201,23 @@
       <ul>
         
           <li>
+            <a href="/2020/03/23/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/ns-3/ns-3-01%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">ns-3/ns-3-01软件安装</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/09/RoboMaster%E8%A7%86%E8%A7%89/RM-03%E7%9B%B8%E6%9C%BA%E9%A9%B1%E5%8A%A8/">RM-03相机驱动</a>
           </li>
         
           <li>
-            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E5%BC%B9%E9%81%93%E6%A8%A1%E5%9E%8B/">RM-06弹道模型</a>
+            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-06%E7%81%AB%E6%8E%A7%E7%B3%BB%E7%BB%9F/">RM-06火控系统</a>
           </li>
         
           <li>
             <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-04%E8%87%AA%E5%8A%A8%E7%9E%84%E5%87%86/">目标追踪</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-05%E8%A3%85%E7%94%B2%E6%9D%BF%E8%AF%86%E5%88%AB/">RM-05装甲板识别</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/05/RoboMaster%E8%A7%86%E8%A7%89/RM-01%E8%A7%86%E8%A7%89%E7%BB%BC%E8%BF%B0/">RM-01视觉综述</a>
           </li>
         
       </ul>
